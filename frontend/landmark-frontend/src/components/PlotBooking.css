@@ -1,0 +1,97 @@
+/* PlotBooking.css */
+.pb-section { background: var(--bg, #f1f5f9); }
+
+.pb-header { text-align: center; margin-bottom: 2rem; }
+.pb-highlight-green { color: #1a5c38; font-weight: 700; }
+
+/* Stats */
+.pb-stats { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+.pb-stat { background: #fff; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 14px 22px; text-align: center; min-width: 110px; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.pb-stat-val { display: block; font-size: 1.8rem; font-weight: 800; font-family: 'Rajdhani', sans-serif; color: #0f172a; }
+.pb-stat-label { font-size: .72rem; color: #64748b; }
+.pb-stat--green .pb-stat-val { color: #15803d; }
+.pb-stat--amber .pb-stat-val { color: #b45309; }
+.pb-stat--red   .pb-stat-val { color: #b91c1c; }
+
+/* Legend */
+.pb-legend { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; font-size: .82rem; color: #64748b; }
+.pb-legend-item { display: flex; align-items: center; gap: 6px; }
+.pb-ld { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+
+/* Block Tabs */
+.pb-block-tabs { display: flex; gap: .75rem; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
+.pb-block-tab { padding: 10px 24px; border-radius: 8px; border: 2px solid #e2e8f0; background: #fff; cursor: pointer; font-weight: 700; font-size: .9rem; transition: all .18s; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.pb-block-tab--active { border-color: #1a5c38; background: #1a5c38; color: #fff; }
+.pb-tab-count { font-size: .68rem; font-weight: 400; opacity: .85; }
+
+/* Block wrap */
+.pb-block-wrap { background: #fff; border: 1.5px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,.08); margin: 0 auto 1.5rem; }
+.pb-block-header { background: linear-gradient(135deg, #1a5c38, #1e7044); color: #fff; padding: 10px 18px; font-weight: 700; font-size: 1.05rem; letter-spacing: 2px; }
+
+/* Zones */
+.pb-zones-row { display: flex; align-items: stretch; overflow-x: auto; justify-content: center; }
+.pb-zone-col { flex: 1; display: flex; flex-direction: column; align-items: center; }
+.pb-zone-label { text-align: center; font-size: .65rem; font-weight: 700; letter-spacing: 2px; color: #64748b; padding: 5px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; width: 100%; }
+.pb-zone-scroll { overflow-x: auto; padding: 0 6px 8px; display: flex; flex-direction: column; align-items: center; width: 100%; }
+.pb-zone-scroll .pb-road { width: 100%; text-align: center; }
+.pb-cols-wrap { display: flex; gap: 3px; padding: 5px 4px; justify-content: center; }
+
+/* Avenue road */
+.pb-avenue { background: #1e293b; border-left: 3px solid #f59e0b; border-right: 3px solid #f59e0b; writing-mode: vertical-rl; display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; letter-spacing: 2px; color: #f59e0b; white-space: nowrap; padding: 8px 4px; flex-shrink: 0; }
+
+/* Roads */
+.pb-road { background: #e2e8f0; border-top: 1.5px solid #94a3b8; border-bottom: 1.5px solid #94a3b8; height: 22px; display: flex; align-items: center; justify-content: center; font-size: .58rem; font-weight: 700; letter-spacing: 2px; color: #64748b; white-space: nowrap; width: 100%; }
+
+/* Columns */
+.pb-cols-wrap { display: flex; gap: 3px; padding: 5px 4px; }
+.pb-col { display: flex; flex-direction: column; gap: 3px; }
+
+/* Cells */
+.pb-cell { width: 44px; height: 42px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; border: 1.5px solid transparent; transition: transform .12s; }
+.pb-num { font-size: .82rem; font-weight: 700; line-height: 1; color: #fff; }
+.pb-size { font-size: .44rem; color: rgba(255,255,255,.75); margin-top: 1px; }
+.pb-empty { background: transparent; border: none; cursor: default; }
+.pb-3k { background: #1a5c38; border-color: #166534; cursor: pointer; }
+.pb-3k:hover { transform: scale(1.12); box-shadow: 0 0 12px rgba(26,92,56,.35); z-index: 2; position: relative; }
+.pb-5k { background: #1e40af; border-color: #1e3a8a; cursor: pointer; }
+.pb-5k:hover { transform: scale(1.12); box-shadow: 0 0 12px rgba(30,64,175,.35); z-index: 2; position: relative; }
+.pb-pending { background: #b45309; border-color: #92400e; cursor: not-allowed; }
+.pb-booked  { background: #991b1b; border-color: #7f1d1d; cursor: not-allowed; }
+
+/* Loading */
+.pb-loading { text-align: center; color: #64748b; padding: 3rem; font-size: 1rem; }
+
+/* Note */
+.pb-note { text-align: center; color: #64748b; font-size: .85rem; margin-top: .5rem; }
+
+/* Modal */
+.pb-modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 300; display: flex; align-items: center; justify-content: center; }
+.pb-modal { background: #fff; border-radius: 14px; padding: 28px; width: 460px; max-width: 95vw; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,.18); }
+.pb-modal h3 { font-size: 1.3rem; font-weight: 800; color: #1a5c38; margin-bottom: 4px; }
+.pb-modal-sub { color: #64748b; font-size: .82rem; margin-bottom: 14px; }
+.pb-modal-close { position: absolute; top: 12px; right: 14px; background: none; border: none; color: #64748b; font-size: 1.1rem; cursor: pointer; }
+.pb-modal-info { display: flex; gap: 12px; flex-wrap: wrap; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 8px 12px; font-size: .82rem; margin-bottom: 14px; }
+.pb-available { color: #15803d; font-weight: 700; }
+.pb-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pb-field { margin-bottom: 10px; }
+.pb-field label { display: block; font-size: .78rem; color: #64748b; margin-bottom: 4px; font-weight: 600; }
+.pb-field input, .pb-field textarea { width: 100%; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 7px; color: #0f172a; padding: 8px 11px; font-family: inherit; font-size: .88rem; outline: none; transition: border .18s; }
+.pb-field input:focus, .pb-field textarea:focus { border-color: #1a5c38; }
+.pb-field textarea { resize: vertical; min-height: 60px; }
+.pb-modal-actions { display: flex; gap: 9px; margin-top: 14px; }
+.pb-btn-primary { flex: 1; padding: 10px 18px; background: #1a5c38; color: #fff; border: none; border-radius: 8px; font-weight: 700; font-size: .9rem; cursor: pointer; transition: background .18s; }
+.pb-btn-primary:hover { background: #1e7044; }
+.pb-btn-primary:disabled { opacity: .6; cursor: not-allowed; }
+.pb-btn-ghost { padding: 10px 16px; background: none; border: 1.5px solid #e2e8f0; border-radius: 8px; color: #0f172a; cursor: pointer; font-weight: 500; }
+
+/* Success Modal */
+.pb-success-modal { text-align: center; }
+.pb-success-icon { width: 60px; height: 60px; background: #dcfce7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: #15803d; margin: 0 auto 16px; }
+.pb-success-modal h3 { font-size: 1.4rem; color: #15803d; margin-bottom: 8px; }
+
+@media (max-width: 600px) {
+  .pb-form-row { grid-template-columns: 1fr; }
+  .pb-cell { width: 34px; height: 32px; }
+  .pb-num { font-size: .7rem; }
+  .pb-size { display: none; }
+}
