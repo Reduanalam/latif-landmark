@@ -3,6 +3,18 @@
   publish = "dist"
 
 [[redirects]]
+  from = "/admin"
+  to = "https://latif-landmark-admin.netlify.app/login"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/admin/*"
+  to = "https://latif-landmark-admin.netlify.app/:splat"
+  status = 302
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
