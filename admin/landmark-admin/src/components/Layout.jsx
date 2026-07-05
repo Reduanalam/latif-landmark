@@ -3,6 +3,9 @@ import { useAuth } from '../context/AuthContext';
 import { FiGrid, FiHome, FiMail, FiStar, FiLogOut, FiMenu, FiX, FiMap } from 'react-icons/fi';
 import { useState } from 'react';
 
+import logo from '../assets/logo-3.png';
+
+
 const nav = [
   { to: '/',               icon: <FiGrid />, label: 'Dashboard'      },
   { to: '/properties',     icon: <FiHome />, label: 'Properties'     },
@@ -27,7 +30,7 @@ export default function Layout({ children }) {
       <aside style={{ ...s.sidebar, transform: open ? 'translateX(0)' : undefined }}>
         <div style={s.sideTop}>
           <div style={s.brand}>
-            <div style={s.brandMark}>LL</div>
+            <img src={logo} alt="Latif Landmark" style={s.brandMark} />
             <div>
               <div style={s.brandName}>Latif Landmark</div>
               <div style={s.brandSub}>Admin Panel</div>
@@ -90,7 +93,7 @@ const s = {
   },
   sideTop:    { flex: 1, overflow: 'auto', padding: '1.5rem 1rem' },
   brand:      { display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '2rem', paddingLeft: '.5rem' },
-  brandMark:  { width: 38, height: 38, background: 'linear-gradient(135deg, var(--gold), var(--gold-dk))', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-head)', fontWeight: 800, fontSize: '.85rem', color: '#000', flexShrink: 0 },
+  brandMark:  { width: 38, height: 38, borderRadius: 8, objectFit: 'cover', flexShrink: 0 },
   brandName:  { fontFamily: 'var(--font-head)', fontWeight: 700, fontSize: '.9rem', lineHeight: 1.2 },
   brandSub:   { fontSize: '.68rem', color: 'var(--text3)', marginTop: 2 },
   nav:        { display: 'flex', flexDirection: 'column', gap: '.2rem' },
