@@ -290,7 +290,7 @@ npm run dev
 
 Terminal 2 — Frontend (the public website)
 
- C:\projects\MY-WEBSITE-main\frontend\landmark-frontend
+cd C:\projects\MY-WEBSITE-main\frontend\landmark-frontend
 npm run dev
 
  
