@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logo-3.png';
 
 export default function Login() {
   const { login } = useAuth();
@@ -27,7 +28,7 @@ export default function Login() {
       <div style={styles.glow} />
       <div style={styles.box}>
         <div style={styles.logo}>
-          <div style={styles.logoMark}>LL</div>
+          <img src={logo} alt="Latif Landmark" style={styles.logoMark} />
           <div>
             <div style={styles.logoName}>Latif Landmark</div>
             <div style={styles.logoSub}>Admin Portal</div>
@@ -76,7 +77,7 @@ const styles = {
   glow: { position: 'absolute', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, #c9a84c18 0%, transparent 70%)', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', pointerEvents: 'none' },
   box: { background: 'var(--bg2)', border: '1px solid var(--border2)', borderRadius: 20, padding: '2.5rem', width: '100%', maxWidth: 400, position: 'relative', zIndex: 1 },
   logo: { display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' },
-  logoMark: { width: 44, height: 44, background: 'linear-gradient(135deg, var(--gold), var(--gold-dk))', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-head)', fontWeight: 800, fontSize: '1rem', color: '#000' },
+  logoMark: { width: 44, height: 44, borderRadius: 10, objectFit: 'cover' },
   logoName: { fontFamily: 'var(--font-head)', fontWeight: 700, fontSize: '1rem' },
   logoSub: { fontSize: '.75rem', color: 'var(--text2)' },
   heading: { fontFamily: 'var(--font-head)', fontSize: '1.6rem', fontWeight: 800, marginBottom: '.25rem' },
