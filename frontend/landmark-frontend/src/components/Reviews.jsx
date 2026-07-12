@@ -86,7 +86,10 @@ export default function Reviews() {
     }
   };
 
-  const ReviewForm = () => (
+  // NOTE: this JSX is inlined directly below (not a separate nested component function).
+  // Defining it as a nested function component would cause React to remount the form
+  // on every keystroke, kicking inputs out of focus after each character/word.
+  const reviewFormJsx = (
     <div className="review-form-wrapper">
       <h3 className="review-form-title">Share Your Experience</h3>
       {submitMsg ? (
@@ -98,18 +101,18 @@ export default function Reviews() {
             <input
               type="text" placeholder="Your Name *" required
               value={form.name}
-              onChange={e => setForm({ ...form, name: e.target.value })}
+              onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
             />
             <input
               type="text" placeholder="Location (e.g. Dhaka)"
               value={form.location}
-              onChange={e => setForm({ ...form, location: e.target.value })}
+              onChange={e => setForm(f => ({ ...f, location: e.target.value }))}
             />
           </div>
           <input
             type="text" placeholder="Which property/plot? (optional)"
             value={form.tag}
-            onChange={e => setForm({ ...form, tag: e.target.value })}
+            onChange={e => setForm(f => ({ ...f, tag: e.target.value }))}
           />
           <div className="review-form-rating">
             <span>Your Rating:</span>
@@ -117,7 +120,7 @@ export default function Reviews() {
               <FaStar
                 key={n}
                 className={n <= form.rating ? "star-filled" : "star-empty"}
-                onClick={() => setForm({ ...form, rating: n })}
+                onClick={() => setForm(f => ({ ...f, rating: n }))}
                 style={{ cursor: 'pointer' }}
               />
             ))}
@@ -125,7 +128,7 @@ export default function Reviews() {
           <textarea
             placeholder="Write your review *" required rows={4}
             value={form.text}
-            onChange={e => setForm({ ...form, text: e.target.value })}
+            onChange={e => setForm(f => ({ ...f, text: e.target.value }))}
           />
           <button type="submit" disabled={submitting} className="review-form-submit">
             {submitting ? 'Submitting…' : 'Submit Review'}
@@ -148,7 +151,7 @@ export default function Reviews() {
           {showForm ? "Hide Review Form" : "Write a Review"}
         </button>
       </div>
-      {showForm && <ReviewForm />}
+      {showForm && reviewFormJsx}
     </section>
   );
 
@@ -184,7 +187,7 @@ export default function Reviews() {
         </button>
       </div>
 
-      {showForm && <ReviewForm />}
+      {showForm && reviewFormJsx}
     </section>
   );
 }
