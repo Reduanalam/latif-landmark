@@ -44,6 +44,12 @@ export default function Reviews() {
   const intervalRef = useRef(null);
   const cardsToShow = 3;
 
+  const [showForm, setShowForm] = useState(false);
+  const [form, setForm] = useState({ name: '', location: '', rating: 5, text: '', tag: '' });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitMsg, setSubmitMsg] = useState(null);
+  const [submitErr, setSubmitErr] = useState(null);
+
   useEffect(() => {
     api.get("/reviews")
       .then(res => setReviews(res.data))   // backend: { success, data: [...] }
@@ -64,6 +70,71 @@ export default function Reviews() {
     if (reviews.length > 0) visibleReviews.push(reviews[(active + i) % reviews.length]);
   }
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setSubmitMsg(null);
+    setSubmitErr(null);
+    try {
+      const res = await api.post('/reviews', form);
+      setSubmitMsg(res.message || 'Thank you! Your review will appear after approval.');
+      setForm({ name: '', location: '', rating: 5, text: '', tag: '' });
+    } catch (err) {
+      setSubmitErr(err.message || 'Failed to submit review. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const ReviewForm = () => (
+    <div className="review-form-wrapper">
+      <h3 className="review-form-title">Share Your Experience</h3>
+      {submitMsg ? (
+        <div className="review-form-success">✓ {submitMsg}</div>
+      ) : (
+        <form onSubmit={handleSubmit} className="review-form">
+          {submitErr && <div className="review-form-error">{submitErr}</div>}
+          <div className="review-form-row">
+            <input
+              type="text" placeholder="Your Name *" required
+              value={form.name}
+              onChange={e => setForm({ ...form, name: e.target.value })}
+            />
+            <input
+              type="text" placeholder="Location (e.g. Dhaka)"
+              value={form.location}
+              onChange={e => setForm({ ...form, location: e.target.value })}
+            />
+          </div>
+          <input
+            type="text" placeholder="Which property/plot? (optional)"
+            value={form.tag}
+            onChange={e => setForm({ ...form, tag: e.target.value })}
+          />
+          <div className="review-form-rating">
+            <span>Your Rating:</span>
+            {[1, 2, 3, 4, 5].map(n => (
+              <FaStar
+                key={n}
+                className={n <= form.rating ? "star-filled" : "star-empty"}
+                onClick={() => setForm({ ...form, rating: n })}
+                style={{ cursor: 'pointer' }}
+              />
+            ))}
+          </div>
+          <textarea
+            placeholder="Write your review *" required rows={4}
+            value={form.text}
+            onChange={e => setForm({ ...form, text: e.target.value })}
+          />
+          <button type="submit" disabled={submitting} className="review-form-submit">
+            {submitting ? 'Submitting…' : 'Submit Review'}
+          </button>
+        </form>
+      )}
+    </div>
+  );
+
   if (reviews.length === 0) return (
     <section className="reviews-section" id="reviews">
       <div className="reviews-header">
@@ -71,6 +142,13 @@ export default function Reviews() {
         <h2 className="section-title">What Our Clients Say About Us</h2>
       </div>
       <p style={{ textAlign: "center", color: "#888", padding: "2rem" }}>Loading reviews…</p>
+
+      <div className="view-all-wrapper">
+        <button onClick={() => setShowForm(!showForm)}>
+          {showForm ? "Hide Review Form" : "Write a Review"}
+        </button>
+      </div>
+      {showForm && <ReviewForm />}
     </section>
   );
 
@@ -101,7 +179,12 @@ export default function Reviews() {
         <button onClick={() => setShowAll(!showAll)}>
           {showAll ? "Show Less" : "View All Reviews"}
         </button>
+        <button onClick={() => setShowForm(!showForm)}>
+          {showForm ? "Hide Review Form" : "Write a Review"}
+        </button>
       </div>
+
+      {showForm && <ReviewForm />}
     </section>
   );
 }

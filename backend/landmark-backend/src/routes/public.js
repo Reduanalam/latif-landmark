@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { getProperties, getProperty } = require('../controllers/propertyController');
 const { createInquiry } = require('../controllers/inquiryController');
-const { getReviews } = require('../controllers/reviewController');
+const { getReviews, submitReview } = require('../controllers/reviewController');
 const { getStats } = require('../controllers/statsController');
 const { getPlots, bookPlot } = require('../controllers/plotController');
 
@@ -14,6 +14,7 @@ router.post('/inquiries', createInquiry);
 
 // Reviews (visible only)
 router.get('/reviews', getReviews);
+router.post('/reviews', submitReview);
 
 // Site stats
 router.get('/stats', getStats);
